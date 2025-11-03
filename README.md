@@ -1,6 +1,6 @@
-# 🎮 Sistema de Salas Privadas — SA-MP (Pawn)
+# 🫧 Sistema de Salas Privadas — SA-MP (Pawn)
 
-Sistema completo para **criação e gerenciamento de salas privadas** em servidores **SA-MP**, permitindo que jogadores criem salas personalizadas com:
+**-** Sistema completo para **criação e gerenciamento de salas privadas** em servidores **SA-MP**, permitindo que jogadores criem salas personalizadas com:
 
 - Controle de armas
 - Número de jogadores
@@ -58,4 +58,7 @@ O sistema utiliza **dialogs interativos**, **comandos simples** e **gerenciament
 
 ---
 
-Feito com ❤️ para servidores **SA-MP** que buscam **flexibilidade e controle total das salas privadas**.
+
+## 👨‍💻 Autor
+
+- **aguiarZ** – Autor original e desenvolvedor do sistema de salas privadas.
