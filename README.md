@@ -1,6 +1,3 @@
-Claro! Aqui está um **README.md** detalhado para o seu sistema de criação de salas privadas em **SA-MP (Pawn)**:
-
-````markdown
 # 🎮 Sistema de Salas Privadas — SA-MP (Pawn)
 
 Um sistema completo de **criação de salas privadas** para servidores **SA-MP**, permitindo que jogadores criem salas personalizadas com controle de arma, número de jogadores, senha, spawn e virtual world.
