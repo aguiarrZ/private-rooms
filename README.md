@@ -58,6 +58,13 @@ O sistema utiliza **dialogs interativos**, **comandos simples** e **gerenciament
 
 ---
 
+## 👀 Previews
+
+![Preview do Sistema](screenshots/sa-mp-16.png)
+![Preview do Sistema](screenshots/sa-mp-17.png)
+![Preview do Sistema](screenshots/sa-mp-18.png)
+
+---
 
 ## 👨‍💻 Autor
 
