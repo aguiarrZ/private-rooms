@@ -60,7 +60,7 @@ O sistema utiliza **dialogs interativos**, **comandos simples** e **gerenciament
 
 ## 👀 Previews
 
-![Preview do Sistema](screenshots/sa-mp-16.png)
+<img src="screenshots/sa-mp-16.png" width="400">
 
 ---
 
