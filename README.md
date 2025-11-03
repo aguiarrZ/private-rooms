@@ -40,10 +40,11 @@ O sistema utiliza **dialogs interativos**, **comandos simples** e **gerenciament
 | Campo              | Tipo / Valores               | Observação |
 |-------------------|------------------------------|------------|
 | Máx. jogadores     | 2–50                         | Número máximo de participantes. |
-| ID da arma         | 0–46 (exceto 19, 20, 21)    | Arma fornecida ao entrar na sala. |
+| ID da arma         | 0–46 (exceto 19, 20, 21)     | Arma fornecida ao entrar na sala. |
 | Senha              | 1–31 caracteres              | Necessária para entrar na sala. |
 | Spawn              | Coordenadas X, Y, Z + Ângulo | Ponto de spawn dentro da sala. |
 | Virtual World      | 1000–50000                   | Cada sala deve ter um virtual world único. |
+| Colete             | 100                          | Proteção do jogador |
 
 ---
 
