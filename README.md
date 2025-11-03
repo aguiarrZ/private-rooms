@@ -123,8 +123,3 @@ O sistema utiliza **dialogs interativos**, comandos simples e gerenciamento auto
 Feito com ❤️ para servidores **SA-MP** que buscam **flexibilidade e controle total das salas privadas**.
 
 ```
-
-Se você quiser, posso criar **uma versão resumida e visualmente mais “bonita”** com tabelas coloridas, exemplos de uso e fluxos de diálogos para jogadores, ideal para colocar direto no GitHub.  
-
-Quer que eu faça isso?
-```
