@@ -59,6 +59,15 @@ O sistema utiliza **dialogs interativos**, **comandos simples** e **gerenciament
 
 ---
 
+## 👀 Visual do Sistema
+
+<div align="center">
+<img src="screenshots/sa-mp-016.png" alt="Preview do Sistema" width="400"/>
+<img src="screenshots/sa-mp-017.png" alt="Preview do Sistema" width="400"/>
+<img src="screenshots/sa-mp-018.png" alt="Preview do Sistema" width="400"/>
+</div>
+
+---
 ## 👨‍💻 Autor
 
 - **aguiarZ** – Autor original e desenvolvedor do sistema de salas privadas.
