@@ -1,4 +1,9 @@
-# 🫧 Sistema de Salas Privadas — SA-MP (Pawn)
+<div align="center">
+
+# 🫧 Sistema de Salas Privadas — SA-MP
+
+</div>
+
 
 **-** Sistema completo para **criação e gerenciamento de salas privadas** em servidores **SA-MP**, permitindo que jogadores criem salas personalizadas com:
 
