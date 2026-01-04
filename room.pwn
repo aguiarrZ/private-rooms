@@ -19,7 +19,7 @@
 #define DIALOG_ENTRAR_SENHA  5300
 #define DIALOG_VIRTUAL_WORLD 5400
 
-// {#} Posição pradrão ao sair da sala (substiua)
+// {#} PosiÃ§Ã£o pradrÃ£o ao sair da sala (substiua)
 #define SPAWN_PADRAO_X   1958.3783
 #define SPAWN_PADRAO_Y   1343.1572
 #define SPAWN_PADRAO_Z   15.3746
@@ -58,8 +58,6 @@ enum eSalaTemp
 }
 new SalaConfig[MAX_PLAYERS][eSalaTemp];
 
-main(){}
-
 /*
   .oooooo.         .o.       ooooo        ooooo        oooooooooo.        .o.         .oooooo.   oooo    oooo  .oooooo..o 
  d8P'  `Y8b       .888.      `888'        `888'        `888'   `Y8b      .888.       d8P'  `Y8b  `888   .8P'  d8P'    `Y8 
@@ -69,6 +67,19 @@ main(){}
 `88b    ooo   .8'     `888.   888       o  888       o  888    .88P  .8'     `888.  `88b    ooo   888  `88b.  oo     .d8P 
  `Y8bood8P'  o88o     o8888o o888ooooood8 o888ooooood8 o888bood8P'  o88o     o8888o  `Y8bood8P'  o888o  o888o 8""88888P'  
 */
+
+
+public OnFilterScriptInit()
+{
+    print("[System:Rooms] Sistema de salas carregado (FilterScript)");
+    return true;
+}
+
+public OnFilterScriptExit()
+{
+    print(""[System:Rooms] Sistema de salas descarregado (FilterScript)");
+    return true;
+}
 
 public OnPlayerDisconnect(playerid, reason)
 {
@@ -115,7 +126,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
         if (!response)
         {
             CancelarConfiguracaoSala(playerid);
-            return SendClientMessage(playerid,  0x00BFFFFF, "INFO: {CCCCCC}Criação de sala cancelada.");
+            return SendClientMessage(playerid,  0x00BFFFFF, "INFO: {CCCCCC}CriaÃ§Ã£o de sala cancelada.");
         }
 
         switch (listitem)
@@ -123,7 +134,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
             case 0:
                 ShowPlayerDialog(playerid, DIALOG_SALA_EDIT, DIALOG_STYLE_INPUT,
                     "{BD8CF2}#{FFFFFF} Definir Quantidade",
-                    "{BD8CF2}-{CCCCCC} Digite o número máximo de jogadores (2–50):",
+                    "{BD8CF2}-{CCCCCC} Digite o nÃºmero mÃ¡ximo de jogadores (2â€“50):",
                     "Salvar", "Voltar");
 
             case 1:
@@ -141,7 +152,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
             {
                 GetPlayerPos(playerid, SalaConfig[playerid][PosX], SalaConfig[playerid][PosY], SalaConfig[playerid][PosZ]);
                 GetPlayerFacingAngle(playerid, SalaConfig[playerid][Angulo]);
-                SendClientMessage(playerid, 0x00FF7FFF, "SUCESSO: {CCCCCC}Posição de spawn atual definida.");
+                SendClientMessage(playerid, 0x00FF7FFF, "SUCESSO: {CCCCCC}PosiÃ§Ã£o de spawn atual definida.");
                 ShowSalaConfigDialog(playerid);
             }
 
@@ -177,7 +188,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
         new world = strval(inputtext);
         if (world < 1000 || world > 50000) 
         {
-            SendClientMessage(playerid, 0xFF4C4CFF, "ERRO: {CCCCCC}Virtual World inválido (1000-50000).");
+            SendClientMessage(playerid, 0xFF4C4CFF, "ERRO: {CCCCCC}Virtual World invÃ¡lido (1000-50000).");
             ShowPlayerDialog(playerid, DIALOG_VIRTUAL_WORLD, DIALOG_STYLE_INPUT, "{BD8CF2}#{FFFFFF} Definir Virtual World", "{BD8CF2}-{CCCCCC} Digite o Virtual World (1000-50000):", "Salvar", "Voltar");
             return true;
         }
@@ -186,7 +197,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
         {
             if(Sala[i][usada] && Sala[i][World] == world)
             {
-                SendClientMessage(playerid, 0xFF4C4CFF, "ERRO: {CCCCCC}Este Virtual World já está em uso.");
+                SendClientMessage(playerid, 0xFF4C4CFF, "ERRO: {CCCCCC}Este Virtual World jÃ¡ estÃ¡ em uso.");
                 ShowPlayerDialog(playerid, DIALOG_VIRTUAL_WORLD, DIALOG_STYLE_INPUT, "{BD8CF2}#{FFFFFF} Definir Virtual World", "{BD8CF2}-{CCCCCC} Digite o Virtual World (1000-50000):", "Salvar", "Voltar");
                 return true;
             }
@@ -209,8 +220,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
         new qnt = strval(inputtext);
         if (qnt < 2 || qnt > 50) 
         {
-            SendClientMessage(playerid, 0xFF4C4CFF, "ERRO: {CCCCCC}Quantidade inválida (2–50).");
-            ShowPlayerDialog(playerid, DIALOG_SALA_EDIT, DIALOG_STYLE_INPUT, "{BD8CF2}#{FFFFFF} Definir Quantidade", "{BD8CF2}-{CCCCCC} Digite o número máximo de jogadores (2–50):", "Salvar", "Voltar");
+            SendClientMessage(playerid, 0xFF4C4CFF, "ERRO: {CCCCCC}Quantidade invÃ¡lida (2â€“50).");
+            ShowPlayerDialog(playerid, DIALOG_SALA_EDIT, DIALOG_STYLE_INPUT, "{BD8CF2}#{FFFFFF} Definir Quantidade", "{BD8CF2}-{CCCCCC} Digite o nÃºmero mÃ¡ximo de jogadores (2â€“50):", "Salvar", "Voltar");
             return true;
         }
         
@@ -235,7 +246,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
         {
             if (input[i] < '0' || input[i] > '9')
             {
-                SendClientMessage(playerid, 0xFF4C4CFF, "ERRO: {CCCCCC}Digite apenas números para o ID da arma.");
+                SendClientMessage(playerid, 0xFF4C4CFF, "ERRO: {CCCCCC}Digite apenas nÃºmeros para o ID da arma.");
                 ShowPlayerDialog(playerid, DIALOG_SALA_EDIT + 1, DIALOG_STYLE_INPUT, "{BD8CF2}#{FFFFFF} Definir Arma", "{BD8CF2}-{CCCCCC} Digite o ID da arma (ex: 24 - 30 - 31):", "Salvar", "Voltar");
                 return true;
             }
@@ -244,7 +255,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
         new arma = strval(input);
         if (!IsValidWeapon(arma)) 
         {
-            SendClientMessage(playerid, 0xFF4C4CFF, "ERRO: {CCCCCC}ID de arma inválido.");
+            SendClientMessage(playerid, 0xFF4C4CFF, "ERRO: {CCCCCC}ID de arma invÃ¡lido.");
             ShowPlayerDialog(playerid, DIALOG_SALA_EDIT + 1, DIALOG_STYLE_INPUT, "{BD8CF2}#{FFFFFF} Definir Arma", "{BD8CF2}-{CCCCCC} Digite o ID da arma:", "Salvar", "Voltar");
             return true;
         }
@@ -329,7 +340,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
             SetPlayerArmour(playerid, 0.0);
 
         new msg[128];
-        format(msg, sizeof(msg), "Salinha: Você entrou na sala criada por %s. Jogadores: %d/%d", Sala[s][Criador], Sala[s][QntPlayers], Sala[s][MaxPlayers]);
+        format(msg, sizeof(msg), "Salinha: VocÃª entrou na sala criada por %s. Jogadores: %d/%d", Sala[s][Criador], Sala[s][QntPlayers], Sala[s][MaxPlayers]);
         SendClientMessage(playerid, 0x00BFFFFF, msg);
         return true;
     }
@@ -399,34 +410,34 @@ stock ShowSalaConfigDialog(playerid)
     if (SalaConfig[playerid][ArmaID] > 0 && SalaConfig[playerid][ArmaID] <= 46)
         GetWeaponName(SalaConfig[playerid][ArmaID], nomearma, sizeof(nomearma));
     else
-        format(nomearma, sizeof(nomearma), "{FF4C4C}Não definida");
+        format(nomearma, sizeof(nomearma), "{FF4C4C}NÃ£o definida");
 
     if (strlen(SalaConfig[playerid][Senha]) > 0)
         format(senha, sizeof(senha), "%s", SalaConfig[playerid][Senha]);
     else
-        format(senha, sizeof(senha), "{FF4C4C}Não definida");
+        format(senha, sizeof(senha), "{FF4C4C}NÃ£o definida");
 
     if (SalaConfig[playerid][PosX] == 0.0 && SalaConfig[playerid][PosY] == 0.0 && SalaConfig[playerid][PosZ] == 0.0)
-        format(spawn, sizeof(spawn), "{FF4C4C}Não definido");
+        format(spawn, sizeof(spawn), "{FF4C4C}NÃ£o definido");
     else
         format(spawn, sizeof(spawn), "%.2f, %.2f, %.2f, %.2f",
             SalaConfig[playerid][PosX], SalaConfig[playerid][PosY], 
             SalaConfig[playerid][PosZ], SalaConfig[playerid][Angulo]);
 
     if (SalaConfig[playerid][World] == 0)
-        format(worldtxt, sizeof(worldtxt), "{FF4C4C}Não definido");
+        format(worldtxt, sizeof(worldtxt), "{FF4C4C}NÃ£o definido");
     else
         format(worldtxt, sizeof(worldtxt), "%d", SalaConfig[playerid][World]);
 
     if (SalaConfig[playerid][MaxPlayers] < 2)
-        format(qnttxt, sizeof(qnttxt), "{FF4C4C}Não definido");
+        format(qnttxt, sizeof(qnttxt), "{FF4C4C}NÃ£o definido");
     else
         format(qnttxt, sizeof(qnttxt), "%d", SalaConfig[playerid][MaxPlayers]);
 
     if (SalaConfig[playerid][Colete])
         format(colete_txt, sizeof(colete_txt), "{28C76F}Sim (100.0)");
     else
-        format(colete_txt, sizeof(colete_txt), "{FF4C4C}Não");
+        format(colete_txt, sizeof(colete_txt), "{FF4C4C}NÃ£o");
 
     format(dialog, sizeof(dialog),
         "{FFFFFF}Quantidade de Jogadores:\t{28C76F}%s\n\
@@ -438,7 +449,7 @@ stock ShowSalaConfigDialog(playerid)
         {28C76F}CRIAR SALA",
     qnttxt, nomearma, senha, spawn, worldtxt, colete_txt);
 
-    ShowPlayerDialog(playerid, DIALOG_SALA_CONFIG, DIALOG_STYLE_TABLIST, "{BD8CF2}#{FFFFFF} Configuração da Sala", dialog, "Selecionar", "Cancelar");
+    ShowPlayerDialog(playerid, DIALOG_SALA_CONFIG, DIALOG_STYLE_TABLIST, "{BD8CF2}#{FFFFFF} ConfiguraÃ§Ã£o da Sala", dialog, "Selecionar", "Cancelar");
     return true;
 }
 
@@ -446,7 +457,7 @@ stock CriarSalaFinal(playerid)
 {
     if (!SalaConfig[playerid][Configurando])
     {
-        SendClientMessage(playerid, 0xFF4C4CFF, "ERRO: {CCCCCC}Configuração de sala nao encontrada.");
+        SendClientMessage(playerid, 0xFF4C4CFF, "ERRO: {CCCCCC}ConfiguraÃ§Ã£o de sala nao encontrada.");
         return false;
     }
 
@@ -476,7 +487,7 @@ stock CriarSalaFinal(playerid)
     {
         if(Sala[j][usada] && Sala[j][World] == SalaConfig[playerid][World])
         {
-            SendClientMessage(playerid, 0xFF4C4CFF, "ERRO: {CCCCCC}Virtual World já está em uso. Escolha outro.");
+            SendClientMessage(playerid, 0xFF4C4CFF, "ERRO: {CCCCCC}Virtual World jÃ¡ estÃ¡ em uso. Escolha outro.");
             ShowSalaConfigDialog(playerid);
             return false;
         }
@@ -518,7 +529,7 @@ stock CriarSalaFinal(playerid)
     new msg[200], nomearma[32];
     GetWeaponName(Sala[i][ArmaID], nomearma, sizeof(nomearma));
     format(msg, sizeof(msg), "Salinha: Sala criada com sucesso! ID: {CCCCCC}%02d{00BFFF} | Jogadores: {CCCCCC}%02d/%02d{00BFFF} | Arma: {CCCCCC}%s{00BFFF} | Senha: {CCCCCC}%s{00BFFF} | Colete: {CCCCCC}%s", 
-        i, Sala[i][QntPlayers], Sala[i][MaxPlayers], nomearma, Sala[i][Senha], (Sala[i][Colete] ? "Sim" : "Não"));
+        i, Sala[i][QntPlayers], Sala[i][MaxPlayers], nomearma, Sala[i][Senha], (Sala[i][Colete] ? "Sim" : "NÃ£o"));
     SendClientMessage(playerid, 0x00BFFFFF, msg);
 
     CancelarConfiguracaoSala(playerid);
@@ -548,7 +559,7 @@ stock RespawnNaSala(playerid)
             else
                 SetPlayerArmour(playerid, 0.0);
             
-            SendClientMessage(playerid, 0x00BFFFFF, "Salinha: Você respawnou na sala.");
+            SendClientMessage(playerid, 0x00BFFFFF, "Salinha: VocÃª respawnou na sala.");
         }
     }
     return true;
@@ -569,7 +580,7 @@ COMMAND:criarsala(playerid, params[])
     if (SalaConfig[playerid][Configurando])
     {
         ShowSalaConfigDialog(playerid);
-        SendClientMessage(playerid, 0xFF4C4CFF, "ERRO: {CCCCCC}Você já está configurando uma sala. Use 'Cancelar' para sair.");
+        SendClientMessage(playerid, 0xFF4C4CFF, "ERRO: {CCCCCC}VocÃª jÃ¡ estÃ¡ configurando uma sala. Use 'Cancelar' para sair.");
     }
 
     if (IsPlayerInAnySala(playerid))
@@ -586,7 +597,7 @@ COMMAND:criarsala(playerid, params[])
 COMMAND:sairsala(playerid, params[])
 {
     if (!IsPlayerInAnySala(playerid)) 
-        return SendClientMessage(playerid, 0xFF4C4CFF, "ERRO: {CCCCCC}Você não está em nenhuma sala.");
+        return SendClientMessage(playerid, 0xFF4C4CFF, "ERRO: {CCCCCC}VocÃª nÃ£o estÃ¡ em nenhuma sala.");
 
     new s = SalaAtual[playerid];
     new nome[MAX_PLAYER_NAME];
@@ -595,7 +606,7 @@ COMMAND:sairsala(playerid, params[])
     new bool:ehCriador = (strfind(Sala[s][Criador], nome, true) != -1);
 
     if (ehCriador)
-        return SendClientMessage(playerid, 0xFF4C4CFF, "ERRO: {CCCCCC}Você é o criador da sala e não pode sair. Use /deletarsala para removê-la.");
+        return SendClientMessage(playerid, 0xFF4C4CFF, "ERRO: {CCCCCC}VocÃª Ã© o criador da sala e nÃ£o pode sair. Use /deletarsala para removÃª-la.");
     
     SalaAtual[playerid] = -1;
     if (Sala[s][QntPlayers] > 0) 
@@ -605,7 +616,7 @@ COMMAND:sairsala(playerid, params[])
     SetPlayerPos(playerid, SPAWN_PADRAO_X, SPAWN_PADRAO_Y, SPAWN_PADRAO_Z);
     SetCameraBehindPlayer(playerid);
 
-    SendClientMessage(playerid, 0x00BFFFFF, "INFO: {CCCCCC}Você saiu da sala.");
+    SendClientMessage(playerid, 0x00BFFFFF, "INFO: {CCCCCC}VocÃª saiu da sala.");
 
     new msg[128];
     format(msg, sizeof(msg), "Salinha: %s saiu da sala. Jogadores: %02d/%02d", nome, Sala[s][QntPlayers], Sala[s][MaxPlayers]);
@@ -634,13 +645,13 @@ COMMAND:salas(playerid, params[])
         GetWeaponName(Sala[i][ArmaID], arma, sizeof(arma));
         format(linha, sizeof(linha), "{FFFFFF}%d\t{BD8CF2}%s\t{FFFFFF}%02d/%02d\t{FFFFFF}%s[%d]\t{FFFFFF}%s\n", 
             i, Sala[i][Criador], Sala[i][QntPlayers], Sala[i][MaxPlayers], arma, Sala[i][ArmaID], 
-            (Sala[i][Colete] ? "Sim" : "Não"));
+            (Sala[i][Colete] ? "Sim" : "NÃ£o"));
         strcat(dialog, linha);
         count++;
     }
 
     if (count == 0)
-        return SendClientMessage(playerid, 0xFF4C4CFF, "ERRO: {CCCCCC}Nenhuma sala disponível no momento.");
+        return SendClientMessage(playerid, 0xFF4C4CFF, "ERRO: {CCCCCC}Nenhuma sala disponÃ­vel no momento.");
 
     ShowPlayerDialog(playerid, DIALOG_LISTA_SALAS, DIALOG_STYLE_TABLIST_HEADERS, "{BD8CF2}#{FFFFFF} Salas Disponiveis:", dialog, "Entrar", "Fechar");
     return true;
@@ -663,7 +674,7 @@ COMMAND:deletarsala(playerid, params[])
     }
     
     if (s == -1) 
-        return SendClientMessage(playerid, 0xFF4C4CFF, "ERRO: {CCCCCC}Você nao é criador de nenhuma sala ativa.");
+        return SendClientMessage(playerid, 0xFF4C4CFF, "ERRO: {CCCCCC}VocÃª nao Ã© criador de nenhuma sala ativa.");
     
     for (new p = 0; p < MAX_PLAYERS; p++)
     {
